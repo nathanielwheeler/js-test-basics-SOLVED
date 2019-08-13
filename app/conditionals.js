@@ -1,8 +1,7 @@
 //1. Given two numbers, write a function that will return  the larger number
 
 function largerNum(num1, num2) {
-    // you code here
-
+    return (num1 > num2 ? num1 : num2 > num1 ? num2 : "neither is greater")
 }
 
 // 2. Given two numbers, amount correct and amount possible of a test, return the corresponding letter grade.
@@ -14,9 +13,19 @@ function largerNum(num1, num2) {
 // output: "F"
 
 function testGrader(score, possible) {
-
+    switch (Math.floor((score / possible) * 10)) {
+        case 10, 9:
+            return "A";
+        case 8:
+            return "B";
+        case 7:
+            return "C";
+        case 6:
+            return "D";
+        default:
+            return "F";
+    }
 }
-
 
 // --------------------------------------------
 
@@ -29,14 +38,40 @@ function testGrader(score, possible) {
 //Make sure your ranges are inclusive
 
 function timeOfDayGreeting(hour) {
-    // you code below
-
+    if (hour >= 22 || hour <= 4) {
+        return "good night";
+    } else if (hour <= 11) {
+        return "good morning";
+    } else if (hour <= 17) {
+        return "good afternoon";
+    } else {
+        return "good evening";
+    }
 }
 
-//4. Write a function that will take in a number and return 'fever' if it indicates a fever (over 98.6) and additionally if the person should go to the hospital (at or above 103) 'fever go to hospital' (hint: try this with string concatenation), if it is under return 'no fever'
+//4. Write a function that will take in a number and return 'fever' if it indicates a fever (over 98.6) and 
+//  additionally if the person should go to the hospital(at or above 103) 'fever go to hospital'(hint: try this with string concatenation), 
+//  if it is under return 'no fever'
 function isFever(temp) {
-
+    let output = "fever";
+    if (temp >= 103) {
+        output += " go to hospital";
+    } else if (temp <= 98.6) {
+        output = "no " + output;
+    }
+    return output;
 }
+// ALTERNATE FORM: which is "best practice"?
+
+// if (temp > 98.6) {
+//     output = "fever";
+//     if (temp >= 103) {
+//         output += " go to hospital";
+//     }
+// } else {
+//     output = "no fever";
+// }
+// return output;
 
 //5. Write a function that takes in a car object, if it is not moving then return true
 let myCar = {
@@ -47,7 +82,12 @@ let myCar = {
 }
 
 function isStopped(car) {
-
+    switch (car.moving == false) {
+        case true:
+            return true;
+        case false:
+            return false;
+    }
 }
 
 //6. Write a function that returns true if a dish is yours and is dirty, or false if one of the statements is false
@@ -58,5 +98,5 @@ let dish = {
 }
 
 function washDish(dish) {
-
+    return (dish.yourDish && dish.isDirty ? true : false);
 }
